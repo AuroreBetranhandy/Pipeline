@@ -16,7 +16,7 @@ def Plot_classic_Hydro(time_range):
 
 
         for base in Shared.all_simulations.keys():
-            # print(base,Shared.all_simulations[base]['t_bounce'])
+            print(base,Shared.all_simulations[base]['t_bounce'])
             time,y=Shared.plot_interp(Shared.all_simulations[base]['time'],Shared.all_simulations[base]['shock_radius'])
             ax1.plot(time-Shared.all_simulations[base]['t_bounce'],y*factor,ls=Shared.all_simulations[base]['ticks'],color=Shared.all_simulations[base]['color'],alpha=Shared.all_simulations[base]['alpha'])
 

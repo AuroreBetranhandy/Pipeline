@@ -17,9 +17,12 @@ import Colors  ##### That's where all colors, alphas and ticks are fixed
 import Dat_files_figures  ###### Make classical figures
 
 import Conv_figures
+
+############ Detect convection zone & save data /!\ HEAVY 
 # import pns_conv_N2_2D
 
 Read_dat_files.read_flash_files()  ##### Please verify path in Shared
+
 Read_dat_files.read_GR1D_files()   ##### Please verify path in Shared
 
 

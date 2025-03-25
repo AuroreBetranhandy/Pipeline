@@ -9,7 +9,7 @@ clight= 29979245800
 
 def read_flash_files(SFHo=False):
     list_file=glob.glob(Shared.FLASH_path+'*.dat')
-    print(list_file)
+    # print(list_file)
     for i in list_file:
         base=i[len(Shared.FLASH_path):]
 
@@ -67,7 +67,7 @@ def read_GR1D_files():
         
         try :
             time,shock=Shared.plot_interp(Shared.all_simulations[base+"_GR1D"]['time'],Shared.all_simulations[base+"_GR1D"]['shock_radius'])
-            Shared.all_simulations[base+"_GR1D"]['t_bounce']=time[shock>0][0]
+            Shared.all_simulations[base+"_GR1D"]['t_bounce']=time[shock>1e5][0]
         except: 
             print(base +"No bounce found")
             del Shared.all_simulations[base+"_GR1D"]

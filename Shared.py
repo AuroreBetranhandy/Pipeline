@@ -5,8 +5,8 @@ import numpy as np
 all_simulations={}  #initialization
 
 ############################################### HEADER to modify
-# FLASH_path="/data/home/abetranhandy/Analysis/FLASH_sims/"
-FLASH_path="/data/home/abetranhandy/Analysis/Analysis_pipeline/py_files/test_file/"
+FLASH_path="/data/home/abetranhandy/Analysis/FLASH_sims/"
+# FLASH_path="/data/home/abetranhandy/Analysis/Analysis_pipeline/py_files/test_file/"
 GR1D_path= "/data/home/abetranhandy/Analysis/GR1D_runs/"
 output_path="/scratch/abetranhandy/output/" ## In case your output file is not stored in the same place as your dat files
 

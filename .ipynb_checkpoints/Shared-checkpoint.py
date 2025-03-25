@@ -6,6 +6,7 @@ all_simulations={}  #initialization
 
 ############################################### HEADER to modify
 FLASH_path="/data/home/abetranhandy/Analysis/FLASH_sims/"
+# FLASH_path="/data/home/abetranhandy/Analysis/Analysis_pipeline/py_files/test_file/"
 GR1D_path= "/data/home/abetranhandy/Analysis/GR1D_runs/"
 output_path="/scratch/abetranhandy/output/" ## In case your output file is not stored in the same place as your dat files
 
@@ -27,4 +28,4 @@ def plot_interp_minimize(x,y,size):
     tau_new= np.interp(time,sorted_x,sorted_y)
     return time,tau_new
 
-
+# 
