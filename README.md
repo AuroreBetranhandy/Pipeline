@@ -35,6 +35,14 @@ Normally self-descriptive, but will add later stuff
 
 Launch by using : python3.12 Main.py
 
+## WIP
+
+-Add GWs 
+
+-Add neutrinos
+
+-test on another cluster than dev one
+
 
 ## Contribution
 
