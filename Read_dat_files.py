@@ -15,7 +15,7 @@ def read_flash_files(SFHo=False):
 
         if "SFHo" in base: SFHo=True
         Shared.all_simulations[base]={}
-        values=np.loadtxt(i,unpack=True,usecols=(0,16,11,29,36,37,38,33,34,35,10,17,13,18)) #avoid re-opening the file 100 times
+        values=np.loadtxt(i,unpack=True,usecols=(0,16,11,29,36,37,38,33,34,35,10,17,13,18,59,53,47)) #avoid re-opening the file 100 times
         Shared.all_simulations[base]['time']=values[0]
         Shared.all_simulations[base]['central_density']=values[1]
         Shared.all_simulations[base]['shock_radius']=values[2]
@@ -29,6 +29,7 @@ def read_flash_files(SFHo=False):
         Shared.all_simulations[base]['gain_net_heating']=values[11]
         Shared.all_simulations[base]['gain_mass_accretion']= values[12]
         Shared.all_simulations[base]['gain_mass']=values[13]
+        Shared.all_simulations[base]['strain']=values[14]+values[15]+values[16]
         
         if (SFHo==True) :
             Shared.all_simulations[base]['gain_E_bind']=values[10] - (neutron_mass - amu)*clight**2/amu * Shared.all_simulations[base]['gain_mass']

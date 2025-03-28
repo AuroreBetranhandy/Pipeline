@@ -18,12 +18,14 @@ import Dat_files_figures  ###### Make classical figures
 
 import Conv_figures
 
+import GW_calculations
+
 ############ Detect convection zone & save data /!\ HEAVY 
 # import pns_conv_N2_2D
 
 Read_dat_files.read_flash_files()  ##### Please verify path in Shared
 
-Read_dat_files.read_GR1D_files()   ##### Please verify path in Shared
+# Read_dat_files.read_GR1D_files()   ##### Please verify path in Shared
 
 
 print(Shared.all_simulations.keys())
@@ -31,14 +33,14 @@ print(Shared.all_simulations.keys())
 Colors.Set_colors_and_ticks()
 
 
-Dat_files_figures.Plot_classic_Hydro(time_range)
-Dat_files_figures.Plot_nu_luminosity(time_range)
-Dat_files_figures.Plot_nu_energy(time_range)
+# Dat_files_figures.Plot_classic_Hydro(time_range)
+# Dat_files_figures.Plot_nu_luminosity(time_range)
+# Dat_files_figures.Plot_nu_energy(time_range)
 # Dat_files_figures.Plot_Tau(time_range)
 
-Conv_figures.Plot_convection_zone(time_range)
+# Conv_figures.Plot_convection_zone(time_range)
 
-
+GW_calculations.GWs(time_range)
 
 ######### WIP
 # GW_figures
