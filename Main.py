@@ -50,6 +50,7 @@ for base in Shared.all_simulations.keys():
         print("already exists "+base)
         continue
     else:
+        print('testing, conv disabled')
         # pns_conv_N2_2D.run_all(base[:-4],plt_files_range)  #### [:-4] is to take of the .dat  
 
 Conv_figures.Plot_convection_zone(time_range)
