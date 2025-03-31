@@ -119,4 +119,4 @@ def Plot_convection_zone(time_range):
 
 
     
-    plt.savefig('Convection.png')
+    plt.savefig('figures/Convection.png')

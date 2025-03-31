@@ -214,7 +214,7 @@ def polarize(filename):
 
 
 def blip_bloup(i):
-    filename = Shared.output_path+base+'_hdf5_plt_cnt_'+str(i).zfill(4)        # ~ filename = base+'_hdf5_plt_cnt_'+str(i).zfill(4)
+    filename = Shared.output_path+globals()["base"]+'_hdf5_plt_cnt_'+str(i).zfill(4)        # ~ filename = base+'_hdf5_plt_cnt_'+str(i).zfill(4)
 
         
     if not os.path.isfile(filename):
@@ -222,61 +222,59 @@ def blip_bloup(i):
     list_of_dict=polarize(filename)
     return list_of_dict
     
-def run_all(base,allprofiles):
-    print(base)
-    allprofiles[base] = {}
+def run_all(base,times,num_of_process=60):
+    print(base, " : Running convection")
+    allprofiles = {}
+    globals()["base"]=base
     
-    filename = Shared.output_path+base+'_hdf5_plt_cnt_0300'        # ~ filename = base+'_hdf5_plt_cnt_'+str(i).zfill(4)
-    if not "cylindrical" in str(h5py.File(filename)['string scalars'][:][-1][-2]):
-        print( "1D file")
+    
+    filename = Shared.output_path+base+'_hdf5_plt_cnt_0350'        # ~ filename = base+'_hdf5_plt_cnt_'+str(i).zfill(4)
+    if not os.path.isfile(filename):
+        print("no plt file")
         return
-    time_range=np.arange(nstarts[base],nends[base])
+    if not "cylindrical" in str(h5py.File(filename)['string scalars'][:]):
+        print(str(h5py.File(filename)['string scalars'][:]), "1D file")
+        return
+    time_range=np.arange(times[0],times[1])
     # print(time_range)
-    pool=Pool(60)
+    pool=Pool(num_of_process)
     procs=list()
     M= np.array(pool.map(blip_bloup,time_range))
     pool.close()
 
     # print(M,"run_all")
     sorted_M= M[M[:,4].argsort()]
-    allprofiles[base]["kin_erg"]= sorted_M[:,0]
-    allprofiles[base]["conv_max_rad"]=sorted_M[:,1]
-    allprofiles[base]["conv_min_rad"]=sorted_M[:,2]
-    allprofiles[base]["total_mass"]=sorted_M[:,3]
-    allprofiles[base]['time']= sorted_M[:,4]
-    allprofiles[base]["kinetic_shock"]=sorted_M[:,5]
-    allprofiles[base]["mass_shock"]=sorted_M[:,6]
-    allprofiles[base]["r_shock_in"]=sorted_M[:,7]
-    allprofiles[base]["r_shock_out"]=sorted_M[:,8]
-    print(allprofiles[base])
-    np.save("N2_values/allprofiles"+base, allprofiles[base])
+    allprofiles["kin_erg"]= sorted_M[:,0]
+    allprofiles["conv_max_rad"]=sorted_M[:,1]
+    allprofiles["conv_min_rad"]=sorted_M[:,2]
+    allprofiles["total_mass"]=sorted_M[:,3]
+    allprofiles['time']= sorted_M[:,4]
+    allprofiles["kinetic_shock"]=sorted_M[:,5]
+    allprofiles["mass_shock"]=sorted_M[:,6]
+    allprofiles["r_shock_in"]=sorted_M[:,7]
+    allprofiles["r_shock_out"]=sorted_M[:,8]
+    print(allprofiles)
+    np.save("N2_values/allprofiles"+base, allprofiles)
 
 
 
 
 
-file_list=glob.glob(Shared.FLASH_path+'*.dat')
+# file_list=glob.glob(Shared.FLASH_path+'*.dat')
 
 
-allprofiles={}
-bases=[]
-nstarts={}
-nends={}
+# allprofiles={}
 
-for i in file_list:
-
-    bases.append(i[len(Shared.FLASH_path):-4])
-    nends[i[len(Shared.FLASH_path):-4]]=2000
-    nstarts[i[len(Shared.FLASH_path):-4]]=0
-    if os.path.isfile("N2_values/allprofiles"+bases[-1]+'.npy'):
-        print("already exists "+bases[-1])
-        bases.remove(bases[-1])
-# ~ run_all("s20_simp_SFHo_Hann8")
-for base in bases:
+def init_convection(base,time_range):
     
-    try:
-        run_all(base,allprofiles)
-    except: 
+    if os.path.isfile("N2_values/allprofiles"+base+'.npy'):
+        print("already exists "+base)
+        return
+        # bases.remove(bases[-1])
+    
+    # try:
+        run_all(base,allprofiles,time_range)
+    # except: 
 
-        print(base, " failed")
+        # print(base, " failed")
 

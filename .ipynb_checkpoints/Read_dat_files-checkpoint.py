@@ -47,8 +47,8 @@ def read_flash_files(SFHo=False):
         
         
 def read_GR1D_files():
-    
-    list_file= os.listdir(Shared.GR1D_path)
+    list_file= [file for file in os.listdir(Shared.GR1D_path) if os.path.isdir(os.path.join(Shared.GR1D_path,file))] # os.listdir is ls and not ls -d
+    # print(list_file)
     for base in list_file:
         
         

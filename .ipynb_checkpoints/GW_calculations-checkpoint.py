@@ -66,6 +66,8 @@ def spectrogram(I2_interp, time_list, delta_t_mean, sample_frequency_mean,
         # print(np.max(np.abs(spectrogr)**2))
         plt.colorbar(orientation='horizontal')
         plt.ylim(0,2000)
+        plt.ylabel('Frequency [Hz]')
+        plt.xlabel('Time post bounce [s]')
         #plt.xlim(0,0.4)
         plt.savefig("figures/Spectrogram_"+name+'.png')
     return f_list, tau_list, spectrogr
@@ -221,7 +223,7 @@ def GWs(time_range):
         
         ax_comp[2].loglog(freq_space[freq_space>1400],savgol_filter(h_char[freq_space>1400],300,3),color=Shared.all_simulations[base]['color'],ls=Shared.all_simulations[base]['ticks'],alpha=0.7,lw=0.7)
         
-        ax_comp[3].loglog(freq, Sigs,color=Shared.all_simulations[base]['color'],ls=Shared.all_simulations[base]['ticks'],alpha=0.7,lw=0.7)
+        ax_comp[3].loglog(freq_reduc,Sigs_reduc,color=Shared.all_simulations[base]['color'],ls=Shared.all_simulations[base]['ticks'],alpha=0.7,lw=0.7)
 
 
         ###################### labels & limits

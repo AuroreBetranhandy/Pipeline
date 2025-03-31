@@ -62,7 +62,7 @@ def Plot_classic_Hydro(time_range):
         for i in range(len(ax)-1):
             ax[i].set_xticklabels([])
         plt.subplots_adjust(wspace=0,hspace=0)
-        plt.savefig('Hydro.png')
+        plt.savefig('figures/Hydro.png')
 
     
 
@@ -126,7 +126,7 @@ def   Plot_nu_luminosity(time_range):    #########################  Paper ready 
         for i in range(len(ax)-1):
             ax[i].set_xticklabels([])
         plt.subplots_adjust(wspace=0,hspace=0)
-        plt.savefig('Nu_lum.png')
+        plt.savefig('figures/Nu_lum.png')
 
     
 
@@ -187,7 +187,7 @@ def Plot_nu_energy(time_range):    #########################  Paper ready Nu ene
         for i in range(len(ax)-1):
             ax[i].set_xticklabels([])
         plt.subplots_adjust(wspace=0,hspace=0)
-        plt.savefig('Nu_energ.png')
+        plt.savefig('figures/Nu_energ.png')
 
 
 
@@ -245,6 +245,6 @@ def Plot_Tau(time_range):   #### explo timescales
             
             ax3.set_xticklabels([])    
             ax3.set_yticklabels([])    
-            plt.savefig('Tau.png')
+            plt.savefig('figures/Tau.png')
         # ~ plt.show()
     
