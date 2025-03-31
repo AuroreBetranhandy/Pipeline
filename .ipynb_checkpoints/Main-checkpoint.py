@@ -26,7 +26,7 @@ import pns_conv_N2_2D ##### Detect convection zone & save data
 
 Read_dat_files.read_flash_files()  ##### Please verify path in Shared
 
-Read_dat_files.read_GR1D_files()   ##### Please verify path in Shared
+# Read_dat_files.read_GR1D_files()   ##### Please verify path in Shared
 
 
 print(Shared.all_simulations.keys())
@@ -50,7 +50,7 @@ for base in Shared.all_simulations.keys():
         print("already exists "+base)
         continue
     else:
-        pns_conv_N2_2D.run_all(base[:-4],plt_files_range)  #### [:-4] is to take of the .dat  
+        # pns_conv_N2_2D.run_all(base[:-4],plt_files_range)  #### [:-4] is to take of the .dat  
 
 Conv_figures.Plot_convection_zone(time_range)
 
