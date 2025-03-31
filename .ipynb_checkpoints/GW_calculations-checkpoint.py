@@ -198,6 +198,9 @@ def GWs(time_range):
         try :
             fit_time,fit_line=Create_linear_fit_for_fmode(base,time_range,f_list, tau_list, spectrogr)
             ax_comp[1].plot(fit_time,fit_line,color=Shared.all_simulations[base]['color'],ls=Shared.all_simulations[base]['ticks'],alpha=0.3)
+
+        except: 
+            print("GWs fit bugged, still making figures")
         
         
 
