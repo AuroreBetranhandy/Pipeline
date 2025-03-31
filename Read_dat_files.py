@@ -12,7 +12,7 @@ def read_flash_files(SFHo=False):
     # print(list_file)
     for i in list_file:
         base=i[len(Shared.FLASH_path):]
-
+        print(base)
         if "SFHo" in base: SFHo=True
         Shared.all_simulations[base]={}
         values=np.loadtxt(i,unpack=True,usecols=(0,16,11,29,36,37,38,33,34,35,10,17,13,18,59,53,47)) #avoid re-opening the file 100 times
@@ -40,7 +40,7 @@ def read_flash_files(SFHo=False):
             time,shock=Shared.plot_interp(Shared.all_simulations[base]['time'],Shared.all_simulations[base]['shock_radius'])
             Shared.all_simulations[base]['t_bounce']=time[shock>0][0]
         except: 
-            print(base +"No bounce found")
+            print(base +" : No bounce found")
             del Shared.all_simulations[base]
         # ~ globals()[i[len(files_path):-4]] = np.loadtxt(i,unpack=True,usecols=(0,11,16,17,29,33,34,35,36,37,38,18,13,10,17,9,30,31,20))    
     return

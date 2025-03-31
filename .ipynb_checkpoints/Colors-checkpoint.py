@@ -48,7 +48,9 @@ def Set_colors_and_ticks():
                 Shared.all_simulations[base]['color']=col[3]
             elif '5e8' in base:
                 Shared.all_simulations[base]['color']=col[4]
-
+            else:
+            Shared.all_simulations[base]['color']='k'
+            print("case not found")
 
                 
         elif ('Gang' in base) & ('SFHo' in base) : 

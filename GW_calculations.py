@@ -128,6 +128,7 @@ def Create_linear_fit_for_fmode(base,time_range,f_list, tau_list, spectrogr):
     # Output "lines" is an array containing endpoints of detected line segments
     lines = cv2.HoughLinesP(edges, rho, theta, threshold, np.array([]),
                         min_line_length, max_line_gap)
+    
     xes=[]
     yes=[]
     for line in lines:
@@ -194,8 +195,11 @@ def GWs(time_range):
     
         cba = ax_comp[1].contourf(tau_list, f_list, test,v,cmap=cmap,extend="both",alpha=0.1)
         ax_comp[1].set_yticks([300,600,900,1200,1500,1800,2100,2400])
-        fit_time,fit_line=Create_linear_fit_for_fmode(base,time_range,f_list, tau_list, spectrogr)
-        ax_comp[1].plot(fit_time,fit_line,color=Shared.all_simulations[base]['color'],ls=Shared.all_simulations[base]['ticks'],alpha=0.3)
+        try :
+            fit_time,fit_line=Create_linear_fit_for_fmode(base,time_range,f_list, tau_list, spectrogr)
+            ax_comp[1].plot(fit_time,fit_line,color=Shared.all_simulations[base]['color'],ls=Shared.all_simulations[base]['ticks'],alpha=0.3)
+        
+        
 
     
         time_reduc,strain_reduc=Shared.plot_interp_minimize(timecheck,straincheck,int(800*timecheck.max()))
