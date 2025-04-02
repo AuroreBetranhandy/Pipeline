@@ -6,11 +6,14 @@ all_simulations={}  #initialization
 
 ############################################### HEADER to modify
 # FLASH_path="/data/home/abetranhandy/Analysis/test_Pipeline/"
-FLASH_path="/proj/astro_extreme/aube8745/Axion/BANG_oliver/s20_final/"
-# FLASH_path="/data/home/abetranhandy/Analysis/Analysis_pipeline/py_files/test_file/"
+# FLASH_path="/proj/astro_extreme/aube8745/Axion/BANG_oliver/s20_final/"
+FLASH_path="/data/home/abetranhandy/Analysis/test_Pipeline/"
 GR1D_path= "/data/home/abetranhandy/Analysis/test_Pipeline/"
 output_path="/scratch/abetranhandy/output/" ## In case your output file is not stored in the same place as your dat files
-output_path="/proj/astro_extreme/aube8745/Axion/BANG_oliver/s20_final/output/" ## In case your output file is not stored in the same place as your dat files
+# output_path="/proj/astro_extreme/aube8745/Axion/BANG_oliver/s20_final/output/" ## In case your output file is not stored in the same place as your dat files
+
+SNOwGLoBES_path = "/data/home/abetranhandy/SN_stuff/snowglobes/" # directory where SNOwGLoBES is located
+SNEWPY_model_dir = "snewpy_models/"
 
 def plot_interp(x,y):
 #     time=x

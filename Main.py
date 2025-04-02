@@ -22,6 +22,8 @@ import Conv_figures
 
 import GW_calculations
 
+import Snewpy_calculations
+
 import pns_conv_N2_2D ##### Detect convection zone & save data 
 
 Read_dat_files.read_flash_files()  ##### Please verify path in Shared
@@ -34,31 +36,30 @@ print(Shared.all_simulations.keys())
 Colors.Set_colors_and_ticks()
 
 
-Dat_files_figures.Plot_classic_Hydro(time_range)
-Dat_files_figures.Plot_nu_luminosity(time_range)
-Dat_files_figures.Plot_nu_energy(time_range)
+# Dat_files_figures.Plot_classic_Hydro(time_range)
+# Dat_files_figures.Plot_nu_luminosity(time_range)
+# Dat_files_figures.Plot_nu_energy(time_range)
 # Dat_files_figures.Plot_Tau(time_range)
 
 
-GW_calculations.GWs(time_range)
+# GW_calculations.GWs(time_range)
 
 for base in Shared.all_simulations.keys():
     if "GR1D" in base:
         print(base," No convection for 1D files")
         continue
     if os.path.isfile("N2_values/allprofiles"+base[:-4]+'.npy'): 
-        print("already exists "+base)
+        print("Covection file already exists "+base)
         continue
     else:
         print('testing, conv disabled')
         # pns_conv_N2_2D.run_all(base[:-4],plt_files_range)  #### [:-4] is to take of the .dat  
 
-Conv_figures.Plot_convection_zone(time_range)
+# Conv_figures.Plot_convection_zone(time_range)
 
-######### WIP
 
-# Nu_figures.
-
+Snewpy_calculations.Make_snewpy_files()
+Snewpy_calculations.Nu_time_plot(time_range)
 
 
 

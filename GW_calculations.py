@@ -14,7 +14,7 @@ import astropy.units as u
 prefactor = (3/2)*(cn.G/cn.c**4).cgs.value 
 import os
 
-
+print(prefactor)
 def spectrogram(I2_interp, time_list, delta_t_mean, sample_frequency_mean, 
                 hann_window=40e-3, overlap_fact=0.5, nfft_fact=1, name=None, plot=False, energy=False,
                window_name = 'hann'):
@@ -207,7 +207,6 @@ def GWs(time_range):
     
         time_reduc,strain_reduc=Shared.plot_interp_minimize(timecheck,straincheck,int(800*timecheck.max()))
         ax_comp[0].plot(time_reduc,strain_reduc*prefactor,lw=0.5,color=Shared.all_simulations[base]['color'],ls=Shared.all_simulations[base]['ticks'],alpha=0.2)
-        # ax[0,1].plot(timecheckHA,straincheckHA*prefactor,lw=2)
         fiper = interpolate.interp1d(timecheck,straincheck*prefactor)
         tip = np.linspace(timecheck[0],timecheck[-1],len(timecheck))
         (freq, Sigs) = periodogram(fiper(tip),1/(tip[1]-tip[0]), scaling='density')
