@@ -260,21 +260,3 @@ def run_all(base,times,num_of_process=60):
 
 
 
-# file_list=glob.glob(Shared.FLASH_path+'*.dat')
-
-
-# allprofiles={}
-
-def init_convection(base,time_range):
-    
-    if os.path.isfile("N2_values/allprofiles"+base+'.npy'):
-        print("already exists "+base)
-        return
-        # bases.remove(bases[-1])
-    
-    # try:
-        run_all(base,allprofiles,time_range)
-    # except: 
-
-        # print(base, " failed")
-
