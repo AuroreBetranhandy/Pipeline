@@ -50,8 +50,8 @@ def neutrino_all_sim_all_detectors():
             #tend = 0.8 * u.s
             
             # Option 3 = specify sequence of time intervals, one fluence file is made for each interval
-            file_start=os.system("/bin/bash -c \"" + "head -2 " + modelfile + "\"")
-            file_end=os.system("/bin/bash -c \"" + "tail -1 " + modelfile + "\"")
+            file_start=Shared.all_simulations[base]['time'][0]
+            file_end=Shared.all_simulations[base]['time'][-1]
             window_tstart = Shared.all_simulations[base]['time'][0]
             window_tend = Shared.all_simulations[base]['time'][-1]
             window_bins = 200
@@ -76,11 +76,11 @@ def neutrino_all_sim_all_detectors():
             
             # nevents is per bin, convert to per ms
             factor = window_bins / (window_tend - window_tstart) / 1000
-            dict[filename]=[tmid,nevents*factor]
+            # dict[filename]=[tmid,nevents*factor]
     
             Shared.all_simulations[base]['snewpy'][detector_name[dec]]={}
-            Shared.all_simulations[base]['snewpy'][detector_name[dec]]['total_events']=total_events
-            Shared.all_simulations[base]['snewpy'][detector_name[dec]]['plots']=[tmid,nevents*factor]
+            Shared.all_simulations[base]['snewpy'][detector_name[dec]]['total_events']=np.sum(nevents)
+            Shared.all_simulations[base]['snewpy'][detector_name[dec]]['plots']=[tmid/u.s,nevents*factor]
             
 
 
