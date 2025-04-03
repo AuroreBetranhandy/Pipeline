@@ -23,6 +23,8 @@ depends on packages:
 
 -scipy
 
+-Snewpy and Snowglobe (this part can be commented out in Main.py)
+
 
 ## Usage
 
@@ -38,13 +40,7 @@ Choose what you want to do in Main.py
 
 Normally self-descriptive, but will add later stuff
 
-Launch by using : python3.12 Main.py
-
-## WIP
-
--Add neutrinos
-
--test on another cluster than dev one
+Launch by using : python3 Main.py
 
 
 ## Contribution
