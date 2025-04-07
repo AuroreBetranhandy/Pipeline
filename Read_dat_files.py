@@ -25,7 +25,7 @@ def read_flash_files(SFHo=False):
         Shared.all_simulations[base]['nux_energ']=values[6]
         Shared.all_simulations[base]['nue_lumi']=values[7]
         Shared.all_simulations[base]['nua_lumi']=values[8]
-        Shared.all_simulations[base]['nux_lumi']=values[9]
+        Shared.all_simulations[base]['nux_lumi']=values[9]/4
         Shared.all_simulations[base]['gain_net_heating']=values[11]
         Shared.all_simulations[base]['gain_mass_accretion']= values[12]
         Shared.all_simulations[base]['gain_mass']=values[13]
@@ -53,7 +53,7 @@ def read_GR1D_files():
         
         
         Shared.all_simulations[base+"_GR1D"]={}
-        Shared.all_simulations[base+"_GR1D"]["time"]=np.loadtxt(Shared.GR1D_path+base+"/"+"shock_radius_t.dat",unpack=True,usecols=(0))
+        Shared.all_simulations[base+"_GR1D"]["time"]=np.loadtxt(Shared.GR1D_path+base+"/"+"rho_c_t.dat",unpack=True,usecols=(0))
         Shared.all_simulations[base+"_GR1D"]["shock_radius"]=np.loadtxt(Shared.GR1D_path+base+"/"+"shock_radius_t.dat",unpack=True,usecols=(1))
         Shared.all_simulations[base+"_GR1D"]["PNS_radius"]=np.loadtxt(Shared.GR1D_path+base+"/"+"r_rho1e11.dat",unpack=True,usecols=(1))
         Shared.all_simulations[base+"_GR1D"]["central_density"]=np.loadtxt(Shared.GR1D_path+base+"/"+"rho_c_t.dat",unpack=True,usecols=(1))
@@ -62,13 +62,12 @@ def read_GR1D_files():
         Shared.all_simulations[base+"_GR1D"]["nua_energ"]=values[1]
         Shared.all_simulations[base+"_GR1D"]["nux_energ"]=values[2]
         values=np.loadtxt(Shared.GR1D_path+base+"/"+"M1_flux_lum.dat",unpack=True,usecols=(1,2,3))
-        Shared.all_simulations[base+"_GR1D"]["nue_lumi"]=values[0]
-        Shared.all_simulations[base+"_GR1D"]["nua_lumi"]=values[1]
-        Shared.all_simulations[base+"_GR1D"]["nux_lumi"]=values[2]
+        Shared.all_simulations[base+"_GR1D"]["nue_lumi"]=values[0]/1e51
+        Shared.all_simulations[base+"_GR1D"]["nua_lumi"]=values[1]/1e51
+        Shared.all_simulations[base+"_GR1D"]["nux_lumi"]=values[2]/1e51
         
         try :
-            time,shock=Shared.plot_interp(Shared.all_simulations[base+"_GR1D"]['time'],Shared.all_simulations[base+"_GR1D"]['shock_radius'])
-            Shared.all_simulations[base+"_GR1D"]['t_bounce']=time[shock>1e5][0]
+            Shared.all_simulations[base+"_GR1D"]["t_bounce"]=np.loadtxt(Shared.GR1D_path+base+"/"+"shock_radius_t.dat",unpack=True,usecols=(0))[0]
         except: 
             print(base +"No bounce found")
             del Shared.all_simulations[base+"_GR1D"]
