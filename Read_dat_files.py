@@ -49,28 +49,30 @@ def read_flash_files(SFHo=False):
 def read_GR1D_files():
     list_file= [file for file in os.listdir(Shared.GR1D_path) if os.path.isdir(os.path.join(Shared.GR1D_path,file))] # os.listdir is ls and not ls -d
     # print(list_file)
+   
     for base in list_file:
-        
-        
-        Shared.all_simulations[base+"_GR1D"]={}
-        Shared.all_simulations[base+"_GR1D"]["time"]=np.loadtxt(Shared.GR1D_path+base+"/"+"rho_c_t.dat",unpack=True,usecols=(0))
-        Shared.all_simulations[base+"_GR1D"]["shock_radius"]=np.loadtxt(Shared.GR1D_path+base+"/"+"shock_radius_t.dat",unpack=True,usecols=(1))
-        Shared.all_simulations[base+"_GR1D"]["PNS_radius"]=np.loadtxt(Shared.GR1D_path+base+"/"+"r_rho1e11.dat",unpack=True,usecols=(1))
-        Shared.all_simulations[base+"_GR1D"]["central_density"]=np.loadtxt(Shared.GR1D_path+base+"/"+"rho_c_t.dat",unpack=True,usecols=(1))
-        values=np.loadtxt(Shared.GR1D_path+base+"/"+"M1_flux_aveenergy_lab.dat",unpack=True,usecols=(1,2,3))
-        Shared.all_simulations[base+"_GR1D"]["nue_energ"]=values[0]
-        Shared.all_simulations[base+"_GR1D"]["nua_energ"]=values[1]
-        Shared.all_simulations[base+"_GR1D"]["nux_energ"]=values[2]
-        values=np.loadtxt(Shared.GR1D_path+base+"/"+"M1_flux_lum.dat",unpack=True,usecols=(1,2,3))
-        Shared.all_simulations[base+"_GR1D"]["nue_lumi"]=values[0]/1e51
-        Shared.all_simulations[base+"_GR1D"]["nua_lumi"]=values[1]/1e51
-        Shared.all_simulations[base+"_GR1D"]["nux_lumi"]=values[2]/1e51
-        
-        try :
-            Shared.all_simulations[base+"_GR1D"]["t_bounce"]=np.loadtxt(Shared.GR1D_path+base+"/"+"shock_radius_t.dat",unpack=True,usecols=(0))[0]
-        except: 
-            print(base +"No bounce found")
-            del Shared.all_simulations[base+"_GR1D"]
+         try:
+            Shared.all_simulations[base+"_GR1D"]={}
+            Shared.all_simulations[base+"_GR1D"]["time"]=np.loadtxt(Shared.GR1D_path+base+"/"+"rho_c_t.dat",unpack=True,usecols=(0))
+            Shared.all_simulations[base+"_GR1D"]["time_shock_radius"],Shared.all_simulations[base+"_GR1D"]["shock_radius"]=np.loadtxt(Shared.GR1D_path+base+"/"+"shock_radius_t.dat",unpack=True,usecols=(0,1))
+            Shared.all_simulations[base+"_GR1D"]["PNS_radius"]=np.loadtxt(Shared.GR1D_path+base+"/"+"r_rho1e11.dat",unpack=True,usecols=(1))
+            Shared.all_simulations[base+"_GR1D"]["central_density"]=np.loadtxt(Shared.GR1D_path+base+"/"+"rho_c_t.dat",unpack=True,usecols=(1))
+            values=np.loadtxt(Shared.GR1D_path+base+"/"+"M1_flux_aveenergy_lab.dat",unpack=True,usecols=(1,2,3))
+            Shared.all_simulations[base+"_GR1D"]["nue_energ"]=values[0]
+            Shared.all_simulations[base+"_GR1D"]["nua_energ"]=values[1]
+            Shared.all_simulations[base+"_GR1D"]["nux_energ"]=values[2]
+            values=np.loadtxt(Shared.GR1D_path+base+"/"+"M1_flux_lum.dat",unpack=True,usecols=(1,2,3))
+            Shared.all_simulations[base+"_GR1D"]["nue_lumi"]=values[0]/1e51
+            Shared.all_simulations[base+"_GR1D"]["nua_lumi"]=values[1]/1e51
+            Shared.all_simulations[base+"_GR1D"]["nux_lumi"]=values[2]/1e51
             
+            try :
+                Shared.all_simulations[base+"_GR1D"]["t_bounce"]=np.loadtxt(Shared.GR1D_path+base+"/"+"tbounce.dat",unpack=True,usecols=(0))[0]
+            except: 
+                print(base +"No bounce found")
+                del Shared.all_simulations[base+"_GR1D"]
+         except:
+            del Shared.all_simulations[base+"_GR1D"]
+            print('File reading problem for GR1D:',base)
     
     return

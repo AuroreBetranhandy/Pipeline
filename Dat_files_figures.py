@@ -18,11 +18,14 @@ def Plot_classic_Hydro(time_range):
         for base in Shared.all_simulations.keys():
             print(base,Shared.all_simulations[base]['t_bounce'])
             if 'GR1D' in base:  
-                time,y=Shared.plot_interp(Shared.all_simulations[base]['time'],Shared.all_simulations[base]['shock_radius'])
-                ax1.plot(time,y*factor,ls=Shared.all_simulations[base]['ticks'],color=Shared.all_simulations[base]['color'],alpha=Shared.all_simulations[base]['alpha'])
+                time,y=Shared.plot_interp(Shared.all_simulations[base]['time_shock_radius'],Shared.all_simulations[base]['shock_radius'])
+                # ax1.plot(time,y*factor,ls=Shared.all_simulations[base]['ticks'],color=Shared.all_simulations[base]['color'],alpha=Shared.all_simulations[base]['alpha'])
             else:
                 time,y=Shared.plot_interp(Shared.all_simulations[base]['time'],Shared.all_simulations[base]['shock_radius'])
-                ax1.plot(time-Shared.all_simulations[base]['t_bounce'],y*factor,ls=Shared.all_simulations[base]['ticks'],color=Shared.all_simulations[base]['color'],alpha=Shared.all_simulations[base]['alpha'])
+
+
+            
+            ax1.plot(time-Shared.all_simulations[base]['t_bounce'],y*factor,ls=Shared.all_simulations[base]['ticks'],color=Shared.all_simulations[base]['color'],alpha=Shared.all_simulations[base]['alpha'])
 
 
             
@@ -86,7 +89,7 @@ def   Plot_nu_luminosity(time_range):    #########################  Paper ready 
         ax3.set_xlim(time_range)
 
         ax1.set_ylim([0.1,100])
-        ax2.set_ylim([0.1,50])
+        ax2.set_ylim([0.1,80])
         ax3.set_ylim([0.1,40])
 
         ############### legend
